@@ -1,4 +1,12 @@
-# Lightweight Model Versioning Platform (LMVP)
+<!-- [![Build Status](https://travis-ci.org/abhinavtripathy/XAuth.svg?branch=master)](https://travis-ci.org/abhinavtripathy/XAuth) -->
+[![License](https://img.shields.io/badge/License-BSD%203%20Clause-brightgreen.svg)](./LICENSE)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/dsc-umass/lmvp.svg?color=red)
+![GitHub stars](https://img.shields.io/github/stars/dsc-umass/lmvp.svg)
+
+# LMVP
+
+> Lightweight Model Versioning Platform
+
 ## About
 An open source neural network versioning system designed to separate model management functions and computationally expensive training operations.
 
