@@ -29,7 +29,9 @@ An open source neural network versioning system designed to separate model manag
 ```
 
 ## Task Groups
-| Branch | Features |
+*Note: previously each task group had its own branch. These branches will be retained, but please do not commit to them. Instead, features should be added in their respective directories and committed to the appropriate branch (e.g. **dev**).*
+
+| Directory | Features |
 | --- | --- |
 | client | Utilities such as Python modules to allow team members to transfer models to/from the central server. |
 | versioning | System for keeping track of how models and weights change over time. |

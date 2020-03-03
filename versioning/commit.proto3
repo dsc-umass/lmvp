@@ -1,0 +1,10 @@
+//An object to store the LMVP version of commits
+//except that for now they don't need to be deltas, just
+//entire files and associated metadata.
+
+//TODO: In another file, write scripts that either A) extract the metrics from provided ONNX files or
+//B) accept the metrics directly as input from the client Python script
+message Commit {
+  //TODO: include a hash of the model (algorithm TBD, I think SHA1 might be a good choice...)
+  //as well as author info, framework, timestamp, and metrics--such as accuracy, loss, and training time.
+}

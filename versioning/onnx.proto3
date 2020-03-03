@@ -1,0 +1,12 @@
+//A wrapper object to hold complete ONNX models.
+//Writing this class will require careful reading of
+//the ONNX file definitions in https://github.com/onnx/onnx/
+syntax = "proto3";
+
+package lmvp;
+
+message OnnxModel {
+  //TODO: store a complete ONNX model.
+  //TODO: figure out how computation graphs and trained weights are stored in ONNX
+  //and see if there's a way to group them together into this one class definition
+}
