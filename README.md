@@ -29,9 +29,11 @@ An open source neural network versioning system designed to separate model manag
 ```
 
 ## Task Groups
-*Note: previously each task group had its own branch. These branches will be retained, but please do not commit to them. Instead, features should be added in their respective directories and committed to the appropriate branch (e.g. **dev**).*
+Commits addressing issues in a group may now be added to the corresponding branch. The *dev* branch may be used for generating test builds, which are available at the Docker repository `jbinvnt/lmvp:latest`. The *master* branch gets built at `jbinvnt/lmvp:stable` and should be used once features have been tested.
 
-| Directory | Features |
+Issues for each group are available in the *Projects* tab.
+
+| Group | Features |
 | --- | --- |
 | client | Utilities such as Python modules to allow team members to transfer models to/from the central server. |
 | versioning | System for keeping track of how models and weights change over time. |
