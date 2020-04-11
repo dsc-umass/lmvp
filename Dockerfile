@@ -5,3 +5,4 @@ WORKDIR /django
 COPY pip3Requirements.txt /django/
 RUN pip3 install -r pip3Requirements.txt
 COPY ./django /django/
+COPY ./runTests.sh /usr/local/bin
