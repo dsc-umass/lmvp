@@ -1,11 +1,40 @@
 from django.db import models
-
+from rest_framework import serializers
 # Create your models here.
 
+class Project(models.Model):
+    name = models.CharField(max_length=64, unique=True)
+
 class User(models.Model):
-    user_name = models.CharField(max_length=32)
-    create_time = models.DateTimeField('time created')
+    username = models.CharField(max_length=32)
+    created = models.DateTimeField('time user created')
 
 class Commit(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL)
-    hash_val = BinaryField(max_length=49, decimal_places=49) #SHA1 is 160 bits or 49 decimal digits
+    author = models.ForeignKey(User, on_delete=models.SET_NULL)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    hash = models.BinaryField(max_length=49, decimal_places=49, unique=True) #SHA1 is 160 bits or 49 decimal digits
+    created = models.DateTimeField('time commit created')
+    file = models.FileField() #django docs suggest using ModelFormWithFileField in views
+
+class BaseMetric(models.Model):
+    class Meta:
+        abstract = True
+    parent_file = models.ForeignKey(Commit, related_name="metrics", on_delete=models.CASCADE) #now Commit has a field called metrics
+    title = models.CharField(max_length=128)
+    value = models.CharField(max_length=128, blank=True)
+class Metric(BaseMetric):
+    isNumeric = models.BooleanField(default=True)
+    #numericValue = models.FloatField(null=True) #should only be null when isNumeric is False
+class NumericMetric(BaseMetric): #for now this model is not used, instead isNumeric is added to the Metric class
+    value = models.FloatField() #we could later avoid floating point problems by switching to DecimalField
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+class CommitSerializer(models.Model):
+    class Meta:
+        model = Commit
+        exclude = ['file'] # for now, until we figure out how to deal with uploads
+    metrics = serializers.HyperlinkedRelatedField(many=True, view_name='metric-detail') #all the metrics related to this commit
+#TODO: metrics can get added to each commit. when showing in a table, how to handle too many columns? Edit metrics through API?
