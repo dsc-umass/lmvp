@@ -1,3 +1,6 @@
-sut:
-  build: .
-  command: runTests.sh
+version: '3'
+
+services:
+  sut:
+    build: . #TODO make this more efficient so it's not building twice? But also needs to work for different tags
+    command: /usr/local/bin/runTests.sh
