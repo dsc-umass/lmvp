@@ -4,7 +4,7 @@ RUN mkdir /django
 WORKDIR /django
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
-COPY django/* .
+ADD django/ .
 WORKDIR /usr/local/bin
 COPY ./runTests.sh .
 RUN chmod +x runTests.sh

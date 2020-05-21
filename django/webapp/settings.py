@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*'] #for test purposes, the wildcard should be removed in prod
 # Application definition
 
 INSTALLED_APPS = [
+    'lmvpinterface.apps.lmvpinterfaceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
