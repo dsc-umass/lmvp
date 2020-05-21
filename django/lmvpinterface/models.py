@@ -6,7 +6,7 @@ class Project(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
 class User(models.Model):
-    username = models.CharField(max_length=32)
+    username = models.CharField(max_length=32, unique=True)
     created = models.DateTimeField('time user created')
 
 class Commit(models.Model):
@@ -14,7 +14,7 @@ class Commit(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     hash = models.BinaryField(max_length=49, decimal_places=49, unique=True) #SHA1 is 160 bits or 49 decimal digits
     created = models.DateTimeField('time commit created')
-    file = models.FileField() #django docs suggest using ModelFormWithFileField in views
+    file = models.FileField(blank=True) #django docs suggest using ModelFormWithFileField in views
 
 class BaseMetric(models.Model):
     class Meta:
