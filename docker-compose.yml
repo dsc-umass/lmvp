@@ -9,13 +9,12 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
   web:
     build: .
-    restart: always
-    command: python3 django/manage.py runserver 0.0.0.0:8000
+    command: python3 manage.py runserver 0.0.0.0:8000
     environment:
       - DJANGO_DEBUG_MODE=True
       - DB_PASSWORD=${DB_PASSWORD}
     volumes:
-      - .:/django
+      - ./django:/django
     ports:
       - "8000:8000"
     depends_on:
