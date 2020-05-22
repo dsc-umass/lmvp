@@ -3,9 +3,17 @@ version: '3'
 services:
   db:
     image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
   web:
     build: .
+    restart: always
     command: python3 django/manage.py runserver 0.0.0.0:8000
+    environment:
+      - DJANGO_DEBUG_MODE=True
+      - DB_PASSWORD=${DB_PASSWORD}
     volumes:
       - .:/django
     ports:

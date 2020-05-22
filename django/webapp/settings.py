@@ -22,16 +22,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '3=)p(da98%t_k=cqwibihop3nppmho!gcz$5bg5(pej3$9bmti'
 
+debugModeActive = (os.getenv('DJANGO_DEBUG_MODE', False) == 'True') #False will be the default value
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = debugModeActive
 
-ALLOWED_HOSTS = ['*'] #for test purposes, the wildcard should be removed in production
-
+ALLOWED_HOSTS = []
+if(debugModeActive):
+    ALLOWED_HOSTS.append('*')
+else:
+    ALLOWED_HOSTS = []
 
 # Application definition
 
 INSTALLED_APPS = [
-    'lmvpinterface.apps.lmvpinterfaceConfig',
+    'lmvpinterface.apps.LmvpinterfaceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -80,6 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
+        'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': 'db',
         'PORT': 5432,
     }
