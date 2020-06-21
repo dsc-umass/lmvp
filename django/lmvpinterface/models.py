@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from rest_framework import serializers
 from hashlib import sha1
 # Create your models here.
@@ -18,6 +19,8 @@ class Commit(models.Model):
     created = models.DateTimeField('time commit created', auto_now_add=True)
     file = models.FileField(blank=True) #django docs suggest using ModelFormWithFileField in views
     def save(self, *args, **kwargs):
+        if not self.pk: # only run before record is first created
+            self.created = timezone.now() # the result of auto_now_add field is not present when calculating the hash
         hasher = sha1()
         hasher.update(self.author.username.encode('utf-8'))
         hasher.update(self.project.name.encode('utf-8'))
@@ -45,7 +48,7 @@ class UserSerializer(serializers.ModelSerializer):
 class CommitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Commit
-        exclude = ['file', 'hash'] # for now, until we figure out how to deal with uploads
+        exclude = ['file', ] # for now, until we figure out how to deal with uploads
     numericmetrics = serializers.HyperlinkedRelatedField(many=True, view_name='numericmetric-detail', read_only=True) #all the metrics related to this commit
     textmetrics = serializers.HyperlinkedRelatedField(many=True, view_name='textmetric-detail', read_only=True) 
 #TODO: metrics can get added to each commit. when showing in a table, how to handle too many columns? Edit metrics through API?
