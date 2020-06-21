@@ -11,9 +11,9 @@ class CommitViewSet(viewsets.ModelViewSet):
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all().order_by('name')
     serializer_class = ProjectSerializer
-class PropertyViewSet(viewsets.ModelViewSet):
-    queryset = Property.objects.all().order_by('name') # TODO add filtering by project and commit
-    serializer_class = PropertySerializer
-class MetricViewSet(viewsets.ModelViewSet):
-    queryset = Metric.objects.all().order_by('name')
-    serializer_class = MetricSerializer
+class TextMetricViewSet(viewsets.ModelViewSet):
+    queryset = TextMetric.objects.all().order_by('name') # TODO add filtering by project and commit
+    serializer_class = TextMetricSerializer
+class NumericMetricViewSet(viewsets.ModelViewSet):
+    queryset = NumericMetric.objects.all().order_by('name')
+    serializer_class = NumericMetricSerializer

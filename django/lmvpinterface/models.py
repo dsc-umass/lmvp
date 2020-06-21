@@ -28,23 +28,14 @@ class Commit(models.Model):
         super().save(*args, **kwargs)
 
 class BaseAttribute(models.Model):
-    @staticmethod
-    def commit_related_name(): # see the following: https://stackoverflow.com/questions/42899817/django-orm-override-related-name-of-field-in-child-class #TODO investigate default_related_name
-        return "%(app_label)s_%(class)ss"
     class Meta:
+        default_related_name = "%(model_name)ss" # used by the CommitSerializer to find metrics/properties pointing back to the commit
         abstract = True
-    # see https://stackoverflow.com/questions/41921255/staticmethod-object-is-not-callable
-    commit = models.ForeignKey(Commit, related_name=commit_related_name.__func__(), on_delete=models.CASCADE) #now Commit has a field with this name
+    commit = models.ForeignKey(Commit, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
-class Metric(BaseAttribute):
-    @staticmethod
-    def commit_related_name():
-        return "metrics"
+class NumericMetric(BaseAttribute):
     value = models.FloatField()
-class Property(BaseAttribute):
-    @staticmethod
-    def commit_related_name():
-        return "properties"
+class TextMetric(BaseAttribute):
     value = models.CharField(max_length=128, blank=True)
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -55,18 +46,18 @@ class CommitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Commit
         exclude = ['file', 'hash'] # for now, until we figure out how to deal with uploads
-    metrics = serializers.HyperlinkedRelatedField(many=True, view_name='metric-detail', read_only=True) #all the metrics related to this commit
-    properties = serializers.HyperlinkedRelatedField(many=True, view_name='property-detail', read_only=True) #all the metrics related to this commit
+    numericmetrics = serializers.HyperlinkedRelatedField(many=True, view_name='numericmetric-detail', read_only=True) #all the metrics related to this commit
+    textmetrics = serializers.HyperlinkedRelatedField(many=True, view_name='textmetric-detail', read_only=True) 
 #TODO: metrics can get added to each commit. when showing in a table, how to handle too many columns? Edit metrics through API?
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
-class PropertySerializer(serializers.ModelSerializer):
+class NumericMetricSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Property
+        model = NumericMetric
         fields = '__all__'
-class MetricSerializer(serializers.ModelSerializer):
+class TextMetricSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Metric
+        model = TextMetric
         fields = '__all__'
