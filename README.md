@@ -10,6 +10,9 @@
 ## About
 An open source neural network versioning system designed to separate model management functions and computationally expensive training operations.
 
+## Getting Started
+[Docker Compose](https://docs.docker.com/compose/install/) is the recommended way to run the API server. After cloning or downloading the repository, run `docker-compose run web python3 manage.py migrate` to build the initial tables in thedatabase. Then run `docker-compose up` to start LMVP. From there, you can navigate to the server in a web browser to see the Django Rest Framework interface, or use another tool to make API requests.
+
 ## Features
 
 - Fetch, update, and publish models from anywhere
