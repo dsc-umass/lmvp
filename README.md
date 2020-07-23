@@ -35,9 +35,6 @@ An open source neural network versioning system designed to separate model manag
 >>> lmvp.update(modelname, localModel)
 ```
 
-## Docker Hub
-You can use Docker to pull an autobuild image from Docker Hub. Right now it is available [here](https://hub.docker.com/r/jbinvnt/lmvp). Be aware that they seem to only work for the x86 architecture, so if you want ARM or something else you will need to build it yourself.
-
 ## Task Groups
 
 Milestones for each group are available in the *Projects* tab. Please make sure to assign each issue to the correct milestone.
@@ -51,6 +48,9 @@ Milestones for each group are available in the *Projects* tab. Please make sure 
 ## Comparison with other platforms
 ![Traditional Cloud Worlflow](/docs/images/TraditionalCloudWorkflow.PNG?raw=true)
 ![Local Training Workflow](/docs/images/LocalTrainingWorkflow.PNG?raw=true)
+
+## Docker Hub
+You can use Docker to pull an autobuild image from Docker Hub. Right now it is available [here](https://hub.docker.com/r/jbinvnt/lmvp). Be aware that they seem to only work for the x86 architecture, so if you want ARM or something else you will need to build it yourself.
 
 ## Troubleshooting starting Docker container
 
