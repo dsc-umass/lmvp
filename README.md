@@ -15,7 +15,7 @@ Please read the entire guide [here](https://github.com/jbinvnt/small-team-tutori
 An open source neural network versioning system designed to separate model management functions and computationally expensive training operations.
 
 ## Getting Started
-[Docker Compose](https://docs.docker.com/compose/install/) is the recommended way to run the API server. After cloning or downloading the repository, run `docker-compose run web python3 manage.py migrate` to build the initial tables in thedatabase. Then run `docker-compose up` to start LMVP. From there, you can navigate to the server in a web browser to see the Django Rest Framework interface, or use another tool to make API requests.
+[Docker Compose](https://docs.docker.com/compose/install/) is the recommended way to run the API server. After cloning or downloading the repository, run `export DB_PASSWORD=arbitrarypassword` and then `docker-compose run web python3 manage.py migrate` to build the initial tables in thedatabase. Then run `docker-compose up` to start LMVP. From there, you can navigate to the server in a web browser to see the Django Rest Framework interface, or use another tool to make API requests.
 
 ## Features
 
@@ -35,9 +35,6 @@ An open source neural network versioning system designed to separate model manag
 >>> lmvp.update(modelname, localModel)
 ```
 
-## Docker Hub
-You can use Docker to pull an autobuild image from Docker Hub. Right now it is available [here](https://hub.docker.com/r/jbinvnt/lmvp). Be aware that they seem to only work for the x86 architecture, so if you want ARM or something else you will need to build it yourself.
-
 ## Task Groups
 
 Milestones for each group are available in the *Projects* tab. Please make sure to assign each issue to the correct milestone.
@@ -51,3 +48,39 @@ Milestones for each group are available in the *Projects* tab. Please make sure 
 ## Comparison with other platforms
 ![Traditional Cloud Worlflow](/docs/images/TraditionalCloudWorkflow.PNG?raw=true)
 ![Local Training Workflow](/docs/images/LocalTrainingWorkflow.PNG?raw=true)
+
+## Docker Hub
+You can use Docker to pull an autobuild image from Docker Hub. Right now it is available [here](https://hub.docker.com/r/jbinvnt/lmvp). Be aware that they seem to only work for the x86 architecture, so if you want ARM or something else you will need to build it yourself.
+
+## Troubleshooting starting Docker container
+
+Here are some problems you might run in to when trying to start the docker container:
+
+### psql: FATAL: password authentication failed for user "postgres"
+
+This will happen if you tried to start the docker container without exporting the database password first. To fix this, run these commands
+
+`$ docker kill $(docker ps -q)`  
+`$ docker rm $(docker ps -a -q)`  
+`$ docker rmi $(docker images -q)`
+
+then export the password
+
+`$ export DB_PASSWORD=arbitrarypassword`
+
+and then run these commands to build and run the container
+
+`$ docker-compose run web python3 manage.py migrate`  
+`$ docker-compose up`
+
+### Cannot connect to the Docker daemon. Is 'docker daemon' running on this host?
+
+I ran into this problem while running Docker on a VM with WSL 2. Try installing [docker-desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows) on Windows first, and then starting docker on your Linux VM with
+
+`$ sudo service docker start`
+
+To make sure Docker automatically starts on boot, run
+
+`$ sudo systemctl enable docker`
+
+this shouldn't be necessary, but you may as well run it just to be safe.
