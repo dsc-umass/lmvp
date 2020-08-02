@@ -32,6 +32,8 @@ if(debugModeActive):
 else:
     ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'authentication.User'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,7 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'authentication'
 ]
+
+REST_FRAMEWORK = {
+    'NON_FIELD_ERRORS_KEY':'error',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
