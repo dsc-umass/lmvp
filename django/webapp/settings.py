@@ -46,20 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'authentication',
-    'drf_yasg'
 ]
-
-SWAGGER_SETTINGS = { #This is used to intialise authorisation with API Key  rather than Email and Password
-    'SECURITY_DEFINITIONS':{
-        'Bearer':{
-            'type':'apiKey',
-            'name':'Authorization',
-            'in':'header'
-        }
-    }
-}
-
-#In Order to use Authorize with API Key, you use the login model which produces an API key and input Bearer'API Key generated' to access
 
 REST_FRAMEWORK = {
     'NON_FIELD_ERRORS_KEY':'error',
