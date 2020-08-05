@@ -127,13 +127,13 @@ To use the login feature and fully have access to the API:
 
 • When the API has loaded up, you would see an interphace with various function as shown in the image below
  
-![Sample Image 1](/docs/images/SW-1.PNG?raw=true)
+![Sample Image 1](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-1.png)
 
 • Click the button that states `(Authorize)`
 
 • Upon clicking Authorize you will see a pop-up requesting for API Key
 
-![Sample Image 2](/docs/images/SW-2.PNG?raw=true)
+![Sample Image 2](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-2.png)
 
 • At this point enter Bearer followed by the ACCESS token and click Authorize `Example:(Bearer **************)`. This will give you full access to the API and its functions
 
@@ -151,7 +151,7 @@ To use the login feature for a user follow the following steps (Beware test User
 
 • When the API has loaded up, you would see an interphace with various function as shown in the image below
 
-![Sample Image 3](/docs/images/SW-3.PNG?raw=true)
+![Sample Image 3](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-3.png)
  
 • This shows various options and function. Click the function that states `(“/auth/login/)`
 
@@ -161,11 +161,11 @@ To use the login feature for a user follow the following steps (Beware test User
 
 • Please note, if you have registered a user and not verifies the email sent, you will be unable to login.
  
-![Sample Image 4](/docs/images/SW-4.PNG?raw=true)
+![Sample Image 4](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-4.png)
 
 • If the current credentials have been entered you will see a Response Code 200 (OK) with the username and email entered, and the two tokens (REFRESH AND ACCESS TOKENS) showing that the user has been successfully registered.
 
-![Sample Image 5](/docs/images/SW-5.PNG?raw=true)
+![Sample Image 5](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-5.png)
 
 ## How To Register A User
 
@@ -182,9 +182,9 @@ To create a user follow the following steps (Beware test Users have already been
 
 • When the API has loaded up, you would see an interphace with various function as shown in the image below
 
-![Sample Image 6](/docs/images/SW-6.PNG?raw=true)
+![Sample Image 6](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-6.png)
 
-![Sample Image 7](/docs/images/SW-7.PNG?raw=true)
+![Sample Image 7](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-7.png)
 
 • This shows various options and function. Click the function that states `(“/auth/register/)`
 
@@ -192,11 +192,11 @@ To create a user follow the following steps (Beware test Users have already been
 
 • Once this has been entered click `EXECUTE`
 
-![Sample Image 8](/docs/images/SW-8.PNG?raw=true)
+![Sample Image 8](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-8.png)
  
 • After a few seconds you will see a Response Code 201 (CREATED) with the username and email entered, showing that the user has been successfully registered.
 
-![Sample Image 9](/docs/images/SW-9.PNG?raw=true)
+![Sample Image 9](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-9.png)
  
 
 ## How To Create Superuser
