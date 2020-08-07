@@ -95,140 +95,130 @@ this shouldn't be necessary, but you may as well run it just to be safe.
 
 >The command `permission_classes = (permissions.IsAuthenticated,)` located in `views.py` ensure that in order to access information of the API you must have logged in with your access token.
 
-•	In order to get a JWT Token, you have to register a new user. 
+* In order to get a JWT Token, you have to register a new user. 
 
-•	When a new user is created, email verification is sent to their email. You can try this by creating a user for yourself
+* When a new user is created, email verification is sent to their email. You can try this by creating a user for yourself
 
-•	After the User has been registered and has verified their email, they are able to login to the API (View Procedure to Login to the API Below)
+* After the User has been registered and has verified their email, they are able to login to the API (View Procedure to Login to the API Below)
 
-•	Upon Logging In, when correct credentials are entered, you receive a 201 response from the API with the entered username, email and two tokens generated.
+* Upon Logging In, when correct credentials are entered, you receive a 201 response from the API with the entered username, email and two tokens generated.
 
 
 After you receive the tokens by logging in. You will notice that there is one that states, "Refresh" and another one that states "Access". 
 
-•	The Refresh token has a life span of 30 days (which can be changed in `settings.py` ) and is used to generate a new token when required.
+* The Refresh token has a life span of 30 days (which can be changed in `settings.py` ) and is used to generate a new token when required.
 
-•	The Acces token enables the users to have direct access to the API, it has a life span of 20 minutes (which can be changed in `settings.py` )
+* The Acces token enables the users to have direct access to the API, it has a life span of 20 minutes (which can be changed in `settings.py` )
 
-•	When you have these tokens you can then login into the API interface and access all features.
+* When you have these tokens you can then login into the API interface and access all features.
 
 ## How To Login A User
 
 > To be able to use the API and access all the information, a user has to login with generated access token
 
-To use the login feature and fully have access to the API:
-	
-    • Run these command in terminal
-    • export DB_PASSWORD=arbitrarypassword
-    • docker-compose run web python3 manage.py migrate
-    • docker-compose up
-    • On your web browser access the API using http://localhost:8000
+To use the login feature and fully have access to the API, run these command in terminal:
+
+    $ export DB_PASSWORD=arbitrarypassword
+    $ docker-compose run web python3 manage.py migrate
+    $ docker-compose up
+
+On your web browser access the API using http://localhost:8000
 
 
-• When the API has loaded up, you would see an interphace with various function as shown in the image below
+* When the API has loaded up, you would see an interphace with various function as shown in the image below
  
-![Sample Image 1](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-1.png)
+![Swagger Interface](/docs/images/SW-1.PNG?raw=true)
 
-• Click the button that states `(Authorize)`
+* Click the button that states `(Authorize)`
 
-• Upon clicking Authorize you will see a pop-up requesting for API Key
+* Upon clicking Authorize you will see a pop-up requesting for API Key
 
-![Sample Image 2](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-2.png)
+![Swagger Interface: Authorise Function](/docs/images/SW-2.PNG?raw=true)
 
-• At this point enter Bearer followed by the ACCESS token and click Authorize `Example:(Bearer **************)`. This will give you full access to the API and its functions
+* At this point enter Bearer followed by the ACCESS token and click Authorize `Example:(Bearer **************)`. This will give you full access to the API and its functions
 
 ## How To Use Login Feature For User And Get Tokens
 
 >To be able to use the API and access all the information, a user has to login to access the login tokens
 
-To use the login feature for a user follow the following steps (Beware test Users have already been created, details below):
+To use the login feature for a user follow the following steps, run these command in terminal:
 
-    • Run these command in terminal
-    • export DB_PASSWORD=arbitrarypassword
-    • docker-compose run web python3 manage.py migrate
-    • docker-compose up
-    • On your web browser access the API using http://localhost:8000
+    $ export DB_PASSWORD=arbitrarypassword
+    $ docker-compose run web python3 manage.py migrate
+    $ docker-compose up
 
-• When the API has loaded up, you would see an interphace with various function as shown in the image below
+On your web browser access the API using http://localhost:8000
 
-![Sample Image 3](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-3.png)
+* When the API has loaded up, you would see an interphace with various function as shown in the image below
+
+![Swagger Interface](/docs/images/SW-3.PNG?raw=true)
  
-• This shows various options and function. Click the function that states `(“/auth/login/)`
+* This shows various options and function. Click the function that states `(“/auth/login/)`
 
-• Upon click `(“/auth/login/)`, you will see an option that states `Try it out`, this will show you an area where you will have to input some parameters (email and password) accordingly, to test use sample users listed below.
+* Upon click `(“/auth/login/)`, you will see an option that states `Try it out`, this will show you an area where you will have to input some parameters (email and password) accordingly, to test use sample users listed below.
 
-• Once this has been entered click `EXECUTE`
+* Once this has been entered click `EXECUTE`
 
-• Please note, if you have registered a user and not verifies the email sent, you will be unable to login.
+* Please note, if you have registered a user and not verifid the email sent, you will be unable to login.
  
-![Sample Image 4](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-4.png)
+![Swagger Interface: Login Feature](/docs/images/SW-4.PNG?raw=true)
 
-• If the current credentials have been entered you will see a Response Code 200 (OK) with the username and email entered, and the two tokens (REFRESH AND ACCESS TOKENS) showing that the user has been successfully registered.
+* If the current credentials have been entered you will see a Response Code 200 (OK) with the username and email entered, and the two tokens (REFRESH AND ACCESS TOKENS) showing that the user has been successfully registered.
 
-![Sample Image 5](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-5.png)
+![Swagger Interface: User Login Features With Tokens ](/docs/images/SW-5.PNG?raw=true)
 
 ## How To Register A User
 
 > To be able to use the API and access all the information, a user has to be created to access the login tokens
 
-To create a user follow the following steps (Beware test Users have already been created, details below):
+To create a user follow the following steps, run these command in terminal:
 
-    • Run these command in terminal
-    • export DB_PASSWORD=arbitrarypassword
-    • docker-compose run web python3 manage.py migrate
-    • docker-compose up
-    • On your web browser access the API using http://localhost:8000
+    $ export DB_PASSWORD=arbitrarypassword
+    $ docker-compose run web python3 manage.py migrate
+    $ docker-compose up
+
+On your web browser access the API using http://localhost:8000
 
 
-• When the API has loaded up, you would see an interphace with various function as shown in the image below
+* When the API has loaded up, you would see an interphace with various function as shown in the image below
 
-![Sample Image 6](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-6.png)
+![Swagger Interface](/docs/images/SW-6.PNG?raw=true)
 
-![Sample Image 7](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-7.png)
+![Swagger Interface](/docs/images/SW-7.PNG?raw=true)
 
-• This shows various options and function. Click the function that states `(“/auth/register/)`
+* This shows various options and function. Click the function that states `(“/auth/register/)`
 
-• Upon click `(“/auth/register/)`, you will see an option that states try it out, this will show you an area where you will have to input some parameters (email, username and password) accordingly. 
+* Upon click `(“/auth/register/)`, you will see an option that states try it out, this will show you an area where you will have to input some parameters (email, username and password) accordingly. 
 
-• Once this has been entered click `EXECUTE`
+* Once this has been entered click `EXECUTE`
 
-![Sample Image 8](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-8.png)
+![Swagger Interface: Register Function](/docs/images/SW-8.PNG?raw=true)
  
-• After a few seconds you will see a Response Code 201 (CREATED) with the username and email entered, showing that the user has been successfully registered.
+* After a few seconds you will see a Response Code 201 (CREATED) with the username and email entered, showing that the user has been successfully registered.
 
-![Sample Image 9](https://github.com/dsc-umass/lmvp/blob/f8f0b74ace33f7e4d4409bb473d3fa11d4b59b34/docs/images/SW-9.png)
+![Swagger Interface: User Successfully Registered](/docs/images/SW-9.PNG?raw=true)
  
 
 ## How To Create Superuser
 
-In order to log into the admin interface, you have to create a superuser. To create a super user follow the following steps:
+>In order to log into the admin interface, you have to create a superuser. 
 
-    •	Run these command in terminal
-    •	$ export DB_PASSWORD=arbitrarypassword
-    •	$ docker-compose run web python3 manage.py createsuperuser
-    •	Fill in the details accordingly 
+To create a super user follow the following steps, run these command in terminal:
+
+    $ export DB_PASSWORD=arbitrarypassword
+    $ docker-compose run web python3 manage.py createsuperuser
+    $ Fill in the details accordingly 
 
 ## How To Log In To Admin Interface
 
 > In order to access the admin interface , you have to use your created superuser details. 
 
-In order to acces the admin interphace follow the following steps:
+In order to acces the admin interphace follow the following steps, run these command in terminal:
 
-    • $ export DB_PASSWORD=arbitrarypassword
-    • $ docker-compose run web python3 manage.py migrate
-    • $ docker-compose up
-    • Access localhost http://localhost:8000/admin from your web browser
-    • Login in with superuser details
+    $ export DB_PASSWORD=arbitrarypassword
+    $ docker-compose run web python3 manage.py migrate
+    $ docker-compose up
 
-## Sample Users Created for Testing purposes
+Access localhost http://localhost:8000/admin from your web browser
 
-## User 1
-
-    • Username: lmvpsample1
-    • Email: sample1@lmvp.com
-    • Password: lmvp_sample@1
-
-## User 2
-    • Username: lmvpsample2
-    • Email: sample2@lmvp.com
-    • Password: lmvp_sample@2
+Login in with superuser details
